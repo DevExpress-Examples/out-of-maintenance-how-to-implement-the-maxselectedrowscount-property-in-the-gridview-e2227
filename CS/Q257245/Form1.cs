@@ -1,20 +1,27 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
-namespace Q257245 {
-    public partial class Form1 :Form {
-        public Form1() {
+namespace Q257245
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-            // TODO: This line of code loads data into the 'nwindDataSet.Categories' table. You can move, or remove it, as needed.
-            this.categoriesTableAdapter.Fill(this.nwindDataSet.Categories);
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var list = new BindingList<Item>();
+            for (int i = 0; i < 10; i++)
+                list.Add(new Item() { ID = i, Name = "Name" + i });
+            myGridControl1.DataSource = list;
         }
+    }
+    public class Item
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }
